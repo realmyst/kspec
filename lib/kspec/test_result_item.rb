@@ -7,14 +7,8 @@ module Kspec
 
     attr_accessor :context, :test, :status, :exception
 
-    def print
-      msg = []
-      msg << @status if @status
-      msg << @context.name if @context
-      msg << @test if @test
-      msg << @exception.message if @exception
-      msg << @exception.backtrace if @exception
-      puts msg.join("\n")
+    def failed?
+      @status == :failed
     end
-  end
+ end
 end

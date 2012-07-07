@@ -57,7 +57,7 @@ module Kspec
       end
 
       def finalize
-        TestResult.print
+        TestReporterBase.result_report TestResult
       end
 
       def descendants

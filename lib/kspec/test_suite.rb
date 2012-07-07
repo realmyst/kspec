@@ -17,6 +17,7 @@ module Kspec
       context_object.tear_up
       context_object.send(test)
       context_object.tear_down
+      TestResult.test_success
     rescue Exception => e
       TestResult.failed :exception => e, :context => @context, :test => test
     end
