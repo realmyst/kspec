@@ -10,5 +10,10 @@ module Kspec
     def failed?
       @status == :failed
     end
+
+    def errored?
+      @status == :errored
+    end
  end
 end
+

@@ -14,4 +14,8 @@ class TestCaseKspec < Kspec::TestCase
     assert true
     assert false
   end
+
+  def test_assert_error
+    unknow_method
+  end
 end

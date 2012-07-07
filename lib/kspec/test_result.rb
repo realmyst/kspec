@@ -26,6 +26,18 @@ module Kspec
         count_failed + count_test_success
       end
 
+      def errored params
+        item = TestResultItem.new
+        item.context = params[:context]
+        item.test = params[:test]
+        item.status = :errored
+        item.exception = params[:exception]
+        @@results << item
+        @@count_failed += 1
+        TestReporterBase.report item
+      end
+
+
       def failed params
         item = TestResultItem.new
         item.context = params[:context]

@@ -6,17 +6,19 @@ module Kspec
           print '.'
         when :failed
           print 'F'
+        when :errored
+          print 'E'
       end
     end
 
     def self.result_report result
       puts "\n\n"
       result.results.each do |item|
-        next unless item.failed?
-
-        lines = item.exception.backtrace.select{|a| !a.match('lib/kspec')}
+        next unless (item.failed? || item.errored?)
 
         puts "##{item.context} #{item.test}"
+        puts "#{item.exception.message}" unless item.exception.message.empty?
+        lines = item.exception.backtrace.select{|a| !a.match('lib/kspec')}
         puts lines.join("\n")
         puts
       end

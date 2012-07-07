@@ -18,8 +18,10 @@ module Kspec
       context_object.send(test)
       context_object.tear_down
       TestResult.test_success
-    rescue Exception => e
+    rescue Kspec::Exception => e
       TestResult.failed :exception => e, :context => @context, :test => test
+    rescue => e
+      TestResult.errored :exception => e, :context => @context, :test => test
     end
 
     def add_test(name)
